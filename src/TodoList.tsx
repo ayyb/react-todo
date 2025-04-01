@@ -122,7 +122,7 @@ const TodoList = () => {
               <th className="px-4 py-2">
                 <input
                   type="checkbox"
-                  checked={selectedIds.size === filteredTodos.length}
+                  checked={filteredTodos.length > 0 && selectedIds.size === filteredTodos.length}
                   onChange={(e) => {
                     if (e.target.checked) {
                       const allIds = filteredTodos.map((todo) => todo.id);
