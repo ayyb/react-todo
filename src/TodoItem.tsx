@@ -37,6 +37,7 @@ const TodoItem = ({
   });
 
   const handleEdit = () => {
+    setEditText(todo.text);
     setEditing(true);
     setTimeout(() => {
       editInputRef.current?.focus(); // 포커스를 입력 필드에 설정
@@ -48,9 +49,13 @@ const TodoItem = ({
   };
 
   const handleUpdate = (id: number) => {
-    updateTodo(id, editText);
-    setEditing(false);
+    if (editing) {
+      updateTodo(id, editText);
+      setEditing(false);
+      setEditText(todo.text);
+    }
   };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       handleUpdate(todo.id);
@@ -73,7 +78,6 @@ const TodoItem = ({
             ref={editInputRef}
             value={editText}
             onChange={handleChange}
-            onBlur={() => handleUpdate(todo.id)}
             onKeyDown={handleKeyDown}
             className="w-full"
           />

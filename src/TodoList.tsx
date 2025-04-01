@@ -70,13 +70,9 @@ const TodoList = () => {
     }
   };
   const updateTodo = (id: number, text: string) => {
-    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)));
-    localStorage.setItem(
-      "todos",
-      JSON.stringify(
-        todos.map((todo) => (todo.id === id ? { ...todo, text } : todo))
-      )
-    );
+    const updatedTodos = todos.map((todo) => (todo.id === id ? { ...todo, text } : todo));
+    setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
   };
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
 
